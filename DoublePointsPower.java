@@ -1,12 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class DoublePointsPower extends Sprite{
 	
 	BallBat BB;
 	BrickCollection BC;
 	
+
 	
 	public DoublePointsPower(int x, int y, int width, int height,BallBat BB,BrickCollection BC) {
 		super(x, y, width, height);
@@ -17,16 +19,23 @@ public class DoublePointsPower extends Sprite{
 	@Override
 	public void update(Keyboard keyboard) {
 		
-		setY(getY()+2);
 		CollisionCheck();
+		//move();
 	}
 
 	@Override
 	public void draw(Graphics2D graphics) {
+	/*	int i = 0;
+		i++;
 		
+		if(i <= 20) {
+			graphics.setColor(Color.MAGENTA);
+		}
+		if(i>20) {*/
+			graphics.setColor(Color.RED);
 		
-		graphics.setColor(Color.MAGENTA);
 		graphics.fillOval(getX(), getY(), getWidth(), getHeight());
+		
 	}
 	
 	public void CollisionCheck() {
@@ -37,7 +46,13 @@ public class DoublePointsPower extends Sprite{
 		if(DpBox.intersects(BatBox)) {
 			BC.setPowerstate(PowerState.DuoblePoints);
 		}
+		if(getY() >= 600) {
+			
+		}
 		
+	}
+	public void move() {	
+		setY(getY() + 2);	
 	}
 
 }

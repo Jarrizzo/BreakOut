@@ -11,6 +11,8 @@ public class Game {
 	TopWall topWall;
 	Life life;
 	ScoreBoard scoreBoard;
+	PowerState powerState;
+	DoublePointsPower DPP;
 	
 	public Game(GameBoard board) {
 
@@ -20,6 +22,10 @@ public class Game {
 	
 
 	public void update(Keyboard keyboard) {
+		
+		if(BC.getPowerstate() == PowerState.DrawPowerUP || BC.getPowerstate() == PowerState.DuoblePoints) {
+			DPP.update(keyboard);
+		}
 		
 		life.update(keyboard);
 		if(keyboard.isKeyDown(Key.Space)) {
@@ -42,6 +48,10 @@ public class Game {
 	}
 
 	public void draw(Graphics2D graphics) {
+		
+		if(BC.getPowerstate() == PowerState.DuoblePoints || BC.getPowerstate() == PowerState.DuoblePoints) {
+			DPP.draw(graphics);
+		}
 
 		if(gamestate == GameState.LOST) {
 			graphics.setColor(Color.RED);
@@ -80,6 +90,8 @@ public class Game {
 		scoreBoard = new ScoreBoard(0, 0, 0, 0);
 		BC = new BrickCollection(ball,scoreBoard,this);
 		life = new Life(0, 0, 0, 0, this);
+		DPP = new DoublePointsPower(395, 300, 10, 10, BB, BC);
+	
 		
 	}
 	public void GameReStart() {
