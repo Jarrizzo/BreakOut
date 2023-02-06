@@ -41,15 +41,19 @@ public class BrickCollection {
 	
 	private void BrickCreation() {
 		
+		Random rand = new Random();
+		
 		for(int i = 0; i < C.NumberOfBricks; i++) {
+			int colorPick = rand.nextInt(3);
+			
 			int x =15 + i % 14 * 55;
 			int y = 100 + i / 14 * 25;
 			
-			if(i < 28)
+			if(colorPick == 0)
 			BC.add( new Brick(x, y, C.BrickWidth, C.BrickHeight, Color.RED));
-			if( i >=28 && i < 56)
+			if( colorPick == 1)
 			BC.add( new Brick(x, y,C.BrickWidth,  C.BrickHeight, Color.WHITE));
-			if( i >= 56)
+			if( colorPick == 2)
 			BC.add( new Brick(x, y, C.BrickWidth,  C.BrickHeight, Color.BLUE));
 		}	
 		
