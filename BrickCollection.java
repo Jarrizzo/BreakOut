@@ -9,6 +9,7 @@ public class BrickCollection {
 	ScoreBoard score;
 	Game game;
 	PowerState powerState;
+	DoublePointsObject DPO;
 
 	ArrayList <Brick> BC = new ArrayList<>();
 	Random rand = new Random();
@@ -44,8 +45,8 @@ public class BrickCollection {
 		Random rand = new Random();
 		
 		for(int i = 0; i < C.NumberOfBricks; i++) {
-			int colorPick = rand.nextInt(3);
 			
+			int colorPick = rand.nextInt(3);
 			int x =15 + i % 14 * 55;
 			int y = 100 + i / 14 * 25;
 			
@@ -64,8 +65,8 @@ public class BrickCollection {
 			Rectangle ballbox = new Rectangle(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight());
 			Rectangle brickbox = new Rectangle(B.getX(),B.getY(),B.getWidth(),B.getHeight());
 			
-			//int PowerUpChance = rand.nextInt(1);
-			int PowerUpChance = 1;
+			int PowerUpChance = rand.nextInt(1);
+			
 			if(brickbox.intersects(ballbox)) {
 				
 				ball.setYSpeed(-(ball.getYSpeed())); 
@@ -74,8 +75,8 @@ public class BrickCollection {
 					if(powerState == PowerState.DuoblePoints) {
 						score.setScore(score.getScore()+10);
 					}
-					if(PowerUpChance == 1) {
-						powerState = PowerState.DrawPowerUP;
+					if(PowerUpChance == 0){
+					//	DPO.createBPObject();
 					}
 					B.color = Color.WHITE;
 				}	
@@ -84,8 +85,8 @@ public class BrickCollection {
 					if(powerState == PowerState.DuoblePoints) {
 						score.setScore(score.getScore()+20);
 					}
-					if(PowerUpChance == 1) {
-						powerState = PowerState.DrawPowerUP;
+					if(PowerUpChance == 0){
+					//	DPO.createBPObject();
 					}
 					B.color = Color.RED; 
 				}	
@@ -94,8 +95,8 @@ public class BrickCollection {
 					if(powerState == PowerState.DuoblePoints) {
 						score.setScore(score.getScore()+30);
 					}
-					if(PowerUpChance == 1) {
-						powerState = PowerState.DrawPowerUP;
+					if(PowerUpChance == 0 ) {
+					//	DPO.createBPObject();
 					}
 					BC.remove(B);
 					break;
