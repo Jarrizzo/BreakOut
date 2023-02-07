@@ -35,14 +35,7 @@ public class Ball extends Sprite{
 		
 	}
 	
-	public void setYDirection (int ySpeed) {
-		
-		ySpeed = 1;
-	}
-	public void setXDirection (int xSpeed) {
-		
-		xSpeed = 1;
-	}
+
 	private void WallCollision () {
 		
 		if (getY( ) <= 105-C.BallSize ) {

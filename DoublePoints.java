@@ -1,11 +1,11 @@
 import java.awt.Graphics2D;
 
-public class DoublePointsPower extends Sprite{
+public class DoublePoints extends Sprite{
 	
 	
 
 	
-	public DoublePointsPower(int x, int y, int width, int height) {
+	public DoublePoints(int x, int y, int width, int height) {
 		super(x, y, width, height);
 
 	}

@@ -1,14 +1,16 @@
 import java.awt.*;
 import java.util.*;
 
-public class DoublePointsObject {
+public class PowerUp {
 
 	BallBat BB;
 	BrickCollection BC;
 	
-	ArrayList<DoublePointsPower> DPP = new ArrayList<>();
+	ArrayList<DoublePoints> DPP = new ArrayList<>();
+	Random rand = new Random();
+
 	
-	public DoublePointsObject(BallBat BB, BrickCollection BC) {
+	public PowerUp(BallBat BB, BrickCollection BC) {
 		this.BB = BB;
 		this.BC = BC;
 	}
@@ -17,22 +19,30 @@ public class DoublePointsObject {
 		
 		CollisionCheck();
 		move();
-
+/*		if(BC.checkCollisioon == true) {
+			
+			System.out.println("Hej");
+			
+			if(rand.nextInt(2) == 1) {
+				createBPObject();
+			}
+		}
+*/		
 	}
 
 
 	public void draw(Graphics2D graphics) {
 
-		for(DoublePointsPower P: DPP) {
+		for(DoublePoints P: DPP) {
 			graphics.setColor(Color.MAGENTA);
 			graphics.fillOval(P.getX(), P.getY(), P.getWidth(), P.getHeight());
 		}
 		
 	}
 	
-	public void CollisionCheck() {
+	private void CollisionCheck() {
 		
-		for(DoublePointsPower P: DPP) {
+		for(DoublePoints P: DPP) {
 			Rectangle DpBox = new Rectangle(P.getX(),P.getY(),P.getWidth(),P.getHeight());
 			Rectangle BatBox = new Rectangle(BB.getX(),BB.getY(),BB.getWidth(),BB.getHeight());
 		
@@ -46,18 +56,17 @@ public class DoublePointsObject {
 		}
 		
 	}
-	public void move() {
+	private void move() {
 		
-		for(DoublePointsPower P: DPP) {
+		for(DoublePoints P: DPP) {
 			P.setY(P.getY() + 2);	
 		}
 	}
 	
-	public void createBPObject() {
+	private void createBPObject() {
 		
-		Random rand = new Random();
 		int Xpos = rand.nextInt(580);
-		DPP.add( new DoublePointsPower( 10+Xpos, 100, 5, 5));
+		DPP.add( new DoublePoints( 10+Xpos, 100, 5, 5));
 	}
 	
 }

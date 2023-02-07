@@ -12,7 +12,8 @@ public class Game {
 	Life life;
 	ScoreBoard scoreBoard;
 	PowerState powerState;
-	DoublePointsObject DPO;
+	PowerUp DPO;
+	WinAndLooseScreen WALS;
 	
 	public Game(GameBoard board) {
 
@@ -54,22 +55,10 @@ public class Game {
 		}
 
 		if(gamestate == GameState.LOST) {
-			graphics.setColor(Color.RED);
-			graphics.setFont(new Font("Coslolas",Font.PLAIN, 100));
-			graphics.drawString("Game Over",140 ,350);
-			graphics.setFont(new Font("Coslolas",Font.PLAIN, 40));
-			graphics.drawString("Your Score: " + scoreBoard.getScore(),265 ,400);
-			graphics.setFont(new Font("Coslolas",Font.PLAIN, 10));
-			graphics.drawString("(Press Enter to Play again)",330 ,420);
+			WALS.LOOSE(graphics);
 		}
 		if(gamestate == GameState.WIN) {
-			graphics.setColor(Color.RED);
-			graphics.setFont(new Font("Coslolas",Font.PLAIN, 100));
-			graphics.drawString("Victory",200 ,350);
-			graphics.setFont(new Font("Coslolas",Font.PLAIN, 40));
-			graphics.drawString("Your Score: " + scoreBoard.getScore(),265 ,400);
-			graphics.setFont(new Font("Coslolas",Font.PLAIN, 10));
-			graphics.drawString("(Press Enter to Play again)",330 ,420);
+			WALS.WIN(graphics);
 		}
 		
 		ball.draw(graphics);
@@ -90,7 +79,8 @@ public class Game {
 		scoreBoard = new ScoreBoard(0, 0, 0, 0);
 		BC = new BrickCollection(ball,scoreBoard,this);
 		life = new Life(0, 0, 0, 0, this);
-		DPO = new DoublePointsObject(BB, BC);
+		DPO = new PowerUp(BB, BC);
+		WALS = new WinAndLooseScreen(scoreBoard);
 	
 		
 	}

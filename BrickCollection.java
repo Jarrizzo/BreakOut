@@ -9,7 +9,7 @@ public class BrickCollection {
 	ScoreBoard score;
 	Game game;
 	PowerState powerState;
-	DoublePointsObject DPO;
+	PowerUp DPO;
 
 	ArrayList <Brick> BC = new ArrayList<>();
 	Random rand = new Random();
@@ -59,7 +59,7 @@ public class BrickCollection {
 		}	
 		
 	}
-	private void checkCollision() {
+	private boolean checkCollision() {
 		
 		for(Brick B: BC) {
 			Rectangle ballbox = new Rectangle(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight());
@@ -101,8 +101,12 @@ public class BrickCollection {
 					BC.remove(B);
 					break;
 				}
-			}	
+				return true;
+
+			}
+
 		}
+		return false;
 	}
 	
 	private void checkIsEmpty() {
@@ -117,5 +121,6 @@ public class BrickCollection {
 	}
 	public void setPowerstate(PowerState powerState) {
 		this.powerState = powerState;
-	}	
+	}
+
 }
