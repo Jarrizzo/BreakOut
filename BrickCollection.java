@@ -64,9 +64,7 @@ public class BrickCollection {
 		for(Brick B: BC) {
 			Rectangle ballbox = new Rectangle(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight());
 			Rectangle brickbox = new Rectangle(B.getX(),B.getY(),B.getWidth(),B.getHeight());
-			
-			int PowerUpChance = rand.nextInt(1);
-			
+						
 			if(brickbox.intersects(ballbox)) {
 				
 				ball.setYSpeed(-(ball.getYSpeed())); 
@@ -75,9 +73,7 @@ public class BrickCollection {
 					if(powerState == PowerState.DuoblePoints) {
 						score.setScore(score.getScore()+10);
 					}
-					if(PowerUpChance == 0){
-					//	DPO.createBPObject();
-					}
+
 					B.color = Color.WHITE;
 				}	
 				else if(B.color == Color.WHITE) {
@@ -85,9 +81,7 @@ public class BrickCollection {
 					if(powerState == PowerState.DuoblePoints) {
 						score.setScore(score.getScore()+20);
 					}
-					if(PowerUpChance == 0){
-					//	DPO.createBPObject();
-					}
+
 					B.color = Color.RED; 
 				}	
 				else if(B.color == Color.RED ) {
@@ -95,9 +89,7 @@ public class BrickCollection {
 					if(powerState == PowerState.DuoblePoints) {
 						score.setScore(score.getScore()+30);
 					}
-					if(PowerUpChance == 0 ) {
-					//	DPO.createBPObject();
-					}
+
 					BC.remove(B);
 					break;
 				}
