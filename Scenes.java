@@ -2,11 +2,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-public class WinAndLooseScreen {
+public class Scenes {
 
 	ScoreBoard scoreBoard;
+	TopWall topWall;
 	
-	public WinAndLooseScreen(ScoreBoard scoreBoard) {
+	public Scenes(ScoreBoard scoreBoard) {
 		this.scoreBoard = scoreBoard;
 	}
 	
@@ -31,6 +32,14 @@ public class WinAndLooseScreen {
 		graphics.drawString("Your Score: " + scoreBoard.getScore(),265 ,400);
 		graphics.setFont(new Font("Coslolas",Font.PLAIN, 10));
 		graphics.drawString("(Press Enter to Play again)",330 ,420);
+		
+	}
+	
+	public void PAUSE(Graphics graphics) {
+		
+		graphics.setColor(Color.RED);
+		graphics.setFont(new Font("Coslolas",Font.PLAIN, 50));
+		graphics.drawString("Press Space to play",150 ,300);
 		
 	}
 	

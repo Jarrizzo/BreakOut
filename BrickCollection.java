@@ -8,8 +8,6 @@ public class BrickCollection {
 	Ball ball;
 	ScoreBoard score;
 	Game game;
-	PowerState powerState;
-	PowerUp DPO;
 
 	ArrayList <Brick> BC = new ArrayList<>();
 	Random rand = new Random();
@@ -59,60 +57,39 @@ public class BrickCollection {
 		}	
 		
 	}
-	private boolean checkCollision() {
+	public void checkCollision() {
 		
 		for(Brick B: BC) {
 			Rectangle ballbox = new Rectangle(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight());
 			Rectangle brickbox = new Rectangle(B.getX(),B.getY(),B.getWidth(),B.getHeight());
 						
-			if(brickbox.intersects(ballbox)) {
-				
-				ball.setYSpeed(-(ball.getYSpeed())); 
-				if(B.color == Color.BLUE) {
-					score.setScore(score.getScore()+10);
-					if(powerState == PowerState.DuoblePoints) {
-						score.setScore(score.getScore()+10);
-					}
+			if(brickbox.intersects(ballbox)) {	
+				ball.setYSpeed(-(ball.getYSpeed()));
 
-					B.color = Color.WHITE;
-				}	
-				else if(B.color == Color.WHITE) {
-					score.setScore(score.getScore()+20);
-					if(powerState == PowerState.DuoblePoints) {
-						score.setScore(score.getScore()+20);
-					}
-
-					B.color = Color.RED; 
-				}	
-				else if(B.color == Color.RED ) {
+				if(B.color == Color.RED ) {
 					score.setScore(score.getScore()+30);
-					if(powerState == PowerState.DuoblePoints) {
-						score.setScore(score.getScore()+30);
-					}
 
 					BC.remove(B);
 					break;
 				}
-				return true;
+				else if(B.color == Color.WHITE) {
+					score.setScore(score.getScore()+20);
 
-			}
-
+					B.color = Color.RED; 
+				}
+				else if(B.color == Color.BLUE) {
+					score.setScore(score.getScore()+10);
+					B.color = Color.WHITE;
+				}
+			}	
 		}
-		return false;
 	}
-	
 	private void checkIsEmpty() {
 		
 		if(BC.isEmpty()) {
 			game.setGamestate(GameState.WIN);
 		}
 		
-	}
-	public PowerState getPowerstate() {
-		return this.powerState;
-	}
-	public void setPowerstate(PowerState powerState) {
-		this.powerState = powerState;
 	}
 
 }

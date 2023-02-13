@@ -16,8 +16,9 @@ public class TopWall extends Sprite{
 	public void draw(Graphics2D graphics) {
 		
 		graphics.setColor(Color.white);
-		graphics.fillRect(0, 90, 800, 5);
-		
+		graphics.fillRect(0, 90, 800, 2);
+		graphics.setColor(Color.white);
+		graphics.fillRect(798, 0, 2, 600);
 		
 	}
 

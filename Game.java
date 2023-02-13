@@ -11,9 +11,9 @@ public class Game {
 	TopWall topWall;
 	Life life;
 	ScoreBoard scoreBoard;
-	PowerState powerState;
-	PowerUp DPO;
-	WinAndLooseScreen WALS;
+	Scenes scene;
+	HighScore highScore;
+	LatestRun latestRun;
 	
 	public Game(GameBoard board) {
 
@@ -24,9 +24,6 @@ public class Game {
 
 	public void update(Keyboard keyboard) {
 		
-		if(BC.getPowerstate() == PowerState.DrawPowerUP || BC.getPowerstate() == PowerState.DuoblePoints) {
-			DPO.update(keyboard);
-		}
 		
 		life.update(keyboard);
 		if(keyboard.isKeyDown(Key.Space)) {
@@ -50,24 +47,28 @@ public class Game {
 
 	public void draw(Graphics2D graphics) {
 		
-		if(BC.getPowerstate() == PowerState.DrawPowerUP || BC.getPowerstate() == PowerState.DuoblePoints) {
-			DPO.draw(graphics);
-		}
-
 		if(gamestate == GameState.LOST) {
-			WALS.LOOSE(graphics);
+			scene.LOOSE(graphics);
 		}
 		if(gamestate == GameState.WIN) {
-			WALS.WIN(graphics);
+			scene.WIN(graphics);
+		}
+		if(gamestate == GameState.PAUSE || gamestate == GameState.START) {
+			scene.PAUSE(graphics);
+			topWall.draw(graphics);
+			life.draw(graphics);
+			scoreBoard.draw(graphics);
 		}
 		
+		if(gamestate == GameState.PLAY) {
 		ball.draw(graphics);
 		BC.draw(graphics);
 		BB.draw(graphics);
 		topWall.draw(graphics);
 		life.draw(graphics);
 		scoreBoard.draw(graphics);
-		
+		}
+
 	}
 	
 	private void GameStart() {
@@ -79,13 +80,14 @@ public class Game {
 		scoreBoard = new ScoreBoard(0, 0, 0, 0);
 		BC = new BrickCollection(ball,scoreBoard,this);
 		life = new Life(0, 0, 0, 0, this);
-		DPO = new PowerUp(BB, BC);
-		WALS = new WinAndLooseScreen(scoreBoard);
+		scene = new Scenes(scoreBoard);
+		highScore = new HighScore(scoreBoard);
+		latestRun = new LatestRun(scoreBoard);
 	
-		
 	}
 	public void GameReStart() {
 		
+		latestRun.addScore();
 		gamestate = GameState.PAUSE;
 		BB.setX(C.BatStartX);
 		ball.setX(C.BallStartX);

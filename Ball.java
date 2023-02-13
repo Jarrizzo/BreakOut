@@ -1,12 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.Random;
 
 public class Ball extends Sprite{
-	
+	Game game;
+	Random rand = new Random();
 	private int ySpeed = -C.BALLSPEED;
 	private int xSpeed = -C.BALLSPEED;
-	Game game;
+	
 	
 	public Ball(int x, int y, int width, int height,Game game) {
 		super(x, y, width, height);

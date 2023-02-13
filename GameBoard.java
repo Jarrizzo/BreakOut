@@ -16,6 +16,10 @@ public class GameBoard extends JComponent {
 	public Dimension getPreferredSize() {
 		return new Dimension(800, 600);
 	}
+	
+	public Game getGame() {
+		return game;
+	}
 
 	@Override
 	protected void paintComponent(Graphics arg0) {

@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 public class ScoreBoard extends Sprite {
 
-	private int score = 0;;
+	private int score = 0;
 	
 	public ScoreBoard(int x, int y, int width, int height) {
 		super(x, y, width, height);
