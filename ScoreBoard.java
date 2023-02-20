@@ -26,10 +26,13 @@ public class ScoreBoard extends Sprite {
 	}
 	
 	public int getScore() {
-		return score;
+	//	System.out.println("get" +score);
+		return this.score;
+
 	}
 	public void setScore(int score) {
 		this.score = score;
+	//	System.out.println("set"+score);
 	}
 
 }

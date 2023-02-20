@@ -24,9 +24,8 @@ public class Game {
 
 	public void update(Keyboard keyboard) {
 		
-		
 		life.update(keyboard);
-		if(keyboard.isKeyDown(Key.Space)) {
+		if(gamestate == GameState.ROUNDLOSS && keyboard.isKeyDown(Key.Space) || gamestate == GameState.PAUSE && keyboard.isKeyDown(Key.Space) || gamestate == GameState.START && keyboard.isKeyDown(Key.Space)) {
 			gamestate = GameState.PLAY;
 		}	
 
@@ -37,27 +36,45 @@ public class Game {
 
 		}
 		if(gamestate == GameState.ROUNDLOSS) {
-			GameReStart();
+			RoundReStart();
 		}
-		if(gamestate == GameState.LOST && keyboard.isKeyDown(Key.Enter) || gamestate == GameState.WIN && keyboard.isKeyDown(Key.Enter)) {
-			GameStart();
-		}		
+
+		if(gamestate == GameState.LOST && keyboard.isKeyDown(Key.Space) || gamestate == GameState.WIN && keyboard.isKeyDown(Key.Enter)) {
+			latestRun.addScore();
+			highScore.addScore();
+			GameReStart();
+		}	
 		
 	}
 
 	public void draw(Graphics2D graphics) {
 		
 		if(gamestate == GameState.LOST) {
+			topWall.draw(graphics);
+			life.draw(graphics);
+			scoreBoard.draw(graphics);
 			scene.LOOSE(graphics);
+			ball.draw(graphics);
+			BC.draw(graphics);
+			BB.draw(graphics);
 		}
 		if(gamestate == GameState.WIN) {
 			scene.WIN(graphics);
+			topWall.draw(graphics);
+			life.draw(graphics);
+			scoreBoard.draw(graphics);
+			ball.draw(graphics);
+			BC.draw(graphics);
+			BB.draw(graphics);
 		}
 		if(gamestate == GameState.PAUSE || gamestate == GameState.START) {
 			scene.PAUSE(graphics);
 			topWall.draw(graphics);
 			life.draw(graphics);
 			scoreBoard.draw(graphics);
+			ball.draw(graphics);
+			BC.draw(graphics);
+			BB.draw(graphics);
 		}
 		
 		if(gamestate == GameState.PLAY) {
@@ -85,14 +102,23 @@ public class Game {
 		latestRun = new LatestRun(scoreBoard);
 	
 	}
-	public void GameReStart() {
+	public void RoundReStart() {
 		
-		latestRun.addScore();
 		gamestate = GameState.PAUSE;
 		BB.setX(C.BatStartX);
 		ball.setX(C.BallStartX);
 		ball.setY(C.BallStartY);
 		life.setLifes(life.getLifes()-1);
+	}
+	public void GameReStart() {
+		
+		gamestate = GameState.START;
+		ball = new Ball(C.BallStartX, C.BallStartY, C.BallSize, C.BallSize, this);
+		BB = new BallBat(C.BatStartX, C.BatStartY, ball);
+		scoreBoard.setScore(0);
+		BC = new BrickCollection(ball,scoreBoard,this);
+		life = new Life(0, 0, 0, 0, this);
+		
 	}
 	
 	public GameState getGamestate() {

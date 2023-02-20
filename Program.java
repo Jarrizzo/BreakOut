@@ -34,7 +34,7 @@ public class Program extends JFrame {
 		LRList.setPreferredSize(new Dimension (150,300));
 		LRList.setBackground(Color.BLACK);
 		LRList.setForeground(Color.WHITE);
-		LRList.setFont(new Font("Coslolas",Font.PLAIN, 20));
+		LRList.setFont(new Font("Coslolas",Font.PLAIN, 19));
 		setResizable(false);
 		
 		JList HSList = new JList(board.getGame().highScore.getHSList());
@@ -42,7 +42,7 @@ public class Program extends JFrame {
 		HSList.setPreferredSize(new Dimension (150,300));
 		HSList.setBackground(Color.BLACK);
 		HSList.setForeground(Color.WHITE);
-		HSList.setFont(new Font("Coslolas",Font.PLAIN, 20));
+		HSList.setFont(new Font("Coslolas",Font.PLAIN, 19));
 		setResizable(false);
 		
 		scorePanel.add(LRList);
