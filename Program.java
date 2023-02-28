@@ -31,7 +31,7 @@ public class Program extends JFrame {
 		
 		JList LRList = new JList(board.getGame().latestRun.getLRList());
 		LRList.setFocusable(false);
-		LRList.setPreferredSize(new Dimension (150,300));
+		LRList.setPreferredSize(new Dimension (115,300));
 		LRList.setBackground(Color.BLACK);
 		LRList.setForeground(Color.WHITE);
 		LRList.setFont(new Font("Coslolas",Font.PLAIN, 19));
@@ -39,7 +39,7 @@ public class Program extends JFrame {
 		
 		JList HSList = new JList(board.getGame().highScore.getHSList());
 		HSList.setFocusable(false);
-		HSList.setPreferredSize(new Dimension (150,300));
+		HSList.setPreferredSize(new Dimension (115,300));
 		HSList.setBackground(Color.BLACK);
 		HSList.setForeground(Color.WHITE);
 		HSList.setFont(new Font("Coslolas",Font.PLAIN, 19));

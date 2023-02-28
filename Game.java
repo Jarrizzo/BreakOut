@@ -33,7 +33,6 @@ public class Game {
 			ball.update(keyboard);
 			BC.update(keyboard);
 			BB.update(keyboard);
-
 		}
 		if(gamestate == GameState.ROUNDLOSS) {
 			RoundReStart();
@@ -108,6 +107,7 @@ public class Game {
 		BB.setX(C.BatStartX);
 		ball.setX(C.BallStartX);
 		ball.setY(C.BallStartY);
+
 		life.setLifes(life.getLifes()-1);
 	}
 	public void GameReStart() {
@@ -117,7 +117,7 @@ public class Game {
 		BB = new BallBat(C.BatStartX, C.BatStartY, ball);
 		scoreBoard.setScore(0);
 		BC = new BrickCollection(ball,scoreBoard,this);
-		life = new Life(0, 0, 0, 0, this);
+		life.setLifes(C.NumberOfLifes);
 		
 	}
 	

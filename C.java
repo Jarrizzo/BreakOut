@@ -2,12 +2,12 @@
 public class C {
 
 	public static final int 	BATSPEED	 	= 6; //6
-	public static final int 	BALLSPEED		= 5; //5
+	public static final int 	BALLSPEED		= 10; //5
 	public static final int 	NumberOfBricks	= 84; //84
 	public static final int 	BoardWidth 		= 100; //100
 	public static final int 	BoardHeight	 	= 600; //600
 	public static final int		BallSize 		= 15; //15
-	public static final int 	BatWidth 		= 100; //100
+	public static final int 	BatWidth 		= 200; //100
 	public static final int 	BatHeight	 	= 10; //10
 	public static final int		BatStartX	 	= 350; //350
 	public static final int		BatStartY	 	= 565; //565
