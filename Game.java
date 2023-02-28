@@ -107,7 +107,6 @@ public class Game {
 		BB.setX(C.BatStartX);
 		ball.setX(C.BallStartX);
 		ball.setY(C.BallStartY);
-
 		life.setLifes(life.getLifes()-1);
 	}
 	public void GameReStart() {

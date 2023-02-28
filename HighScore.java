@@ -20,18 +20,18 @@ public class HighScore {
 	
 	public void addScore() {
 		
-		if(scoreBoard.getScore() > HSList.lastIndexOf(HSList)) {
-			if(scoreBoard.getScore() > 0 && HSList.size() < 11) {
-				HSList.addElement(Initials()+ " - " + Integer.toString(scoreBoard.getScore()));
-				sort();
-			}
-			else {
-			
-				HSList.remove(10);
-				HSList.addElement(Initials()+ " - " + Integer.toString(scoreBoard.getScore()));
-				sort();
-			}
+		if(scoreBoard.getScore() > 0 && HSList.size() < 11) {
+			HSList.addElement(Initials()+ " - " + Integer.toString(scoreBoard.getScore()));
+			sort();
 		}
+		else {
+		
+			HSList.addElement(Initials()+ " - " + Integer.toString(scoreBoard.getScore()));
+			sort();
+			HSList.remove(11);
+
+		}
+		
 	}
 	
 	public DefaultListModel <String> getHSList() {
